@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link href="css/login.css" rel="stylesheet">
+</head>
+<body>
+<div class="login-wrapper">
+    <h2>Login</h2>
+    <form method="post" id="login-form">
+        <input type="text" id="userid" name="userName" placeholder="ID">
+        <input type="password" id="pw" name="userPassword" placeholder="Password">
+        <label for="remember-check">
+            <input type="checkbox" id="remember-check">아이디 저장하기
+        </label>
+        <button type="button" id="login" th:href="@{/}">Login</button>
+    </form>
+</div>
+</body>
+<script src="/js/login.js"></script>
+</html>
