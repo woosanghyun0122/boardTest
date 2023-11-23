@@ -17,4 +17,11 @@ public class UserViewController {
 
         return "user/login";
     }
+
+    @GetMapping("/join")
+    public String join() {
+        return "user/join";
+    }
+
+
 }

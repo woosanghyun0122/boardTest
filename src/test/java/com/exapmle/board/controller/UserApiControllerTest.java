@@ -6,6 +6,7 @@ import com.exapmle.board.dto.UpdateUser;
 import com.exapmle.board.repository.UserRepository;
 import com.exapmle.board.service.UserService;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,13 +18,16 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.ResultActions;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
 import java.util.Optional;
 
+import static java.nio.file.Paths.get;
 import static org.assertj.core.api.Assertions.*;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -59,7 +63,7 @@ public class UserApiControllerTest {
     @Test
     void save() throws Exception {
 
-        final String url = "/api/user";
+        String url = "/api/user";
         final AddUser user1 = new AddUser("test", "1234", "가나다", "01012345678", "abc@naver.com", "서울");
         final String requestBody = objectMapper.writeValueAsString(user1);
 
@@ -72,7 +76,7 @@ public class UserApiControllerTest {
 
         List<User> user = repository.findAll();
 
-        assertThat(user.get(0).getUserId()).isEqualTo("test");
+        assertThat(user.get(0).getUserid()).isEqualTo("test");
         assertThat(user.get(0).getPassword()).isEqualTo("1234");
     }
 
@@ -81,9 +85,9 @@ public class UserApiControllerTest {
     @Test
     void loginLogic() {
 
-        final String url = "/api/user";
+        String url = "/api/user";
         User user = repository.save(User.builder()
-                .userId("test")
+                .userid("test")
                 .password("1234")
                 .username("가나다")
                 .phone("01012345678")
@@ -91,10 +95,17 @@ public class UserApiControllerTest {
                 .address("seoul")
                 .build()
         );
+////        final String requestBody = objectMapper.writeValueAsString(user);
+////
+////        ResultActions result = mockMvc.perform(post(url)
+////                .contentType(MediaType.APPLICATION_JSON_VALUE)
+////                .content(requestBody));
+//
+//        result.andExpect(status().isCreated());
 
-        User loginCheck = service.findByUserIdAndPassword(user.getUserId(), user.getPassword());
+        User loginCheck = service.findByUseridAndPassword(user.getUserid(), user.getPassword());
 
-        assertThat(loginCheck.getUserId()).isEqualTo("test");
+        assertThat(loginCheck.getUserid()).isEqualTo("test");
         assertThat(loginCheck.getPassword()).isEqualTo("1234");
 
     }
@@ -103,9 +114,9 @@ public class UserApiControllerTest {
     @Test
     void update() throws Exception {
 
-        final String url = "/api/user/{id}";
+        String url = "/api/user/{id}";
         User user = repository.save(User.builder()
-                .userId("test")
+                .userid("test")
                 .password("1234")
                 .username("가나다")
                 .phone("01012345678")
@@ -125,7 +136,28 @@ public class UserApiControllerTest {
 
         User check = repository.findById(user.getId()).get();
 
-        assertThat(check.getUserId()).isEqualTo("test1");
+        assertThat(check.getUserid()).isEqualTo("test1");
         assertThat(check.getAddress()).isEqualTo("busan");
+    }
+
+    @DisplayName("아이디 중복 확인")
+    @Test
+    void duplicate() throws Exception {
+
+        String url = "/api/user/{userid}";
+        User user = repository.save(User.builder()
+                .userid("test")
+                .password("1234")
+                .username("가나다")
+                .phone("01012345678")
+                .email("abc@naver.com")
+                .address("seoul")
+                .build()
+        );
+
+        ResultActions result = mockMvc.perform(MockMvcRequestBuilders.get(url, user.getUserid()))
+                .andExpect(status().isOk());
+
+
     }
 }

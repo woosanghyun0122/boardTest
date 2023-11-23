@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Getter
 public class AddUser {
 
-    private String userId;
+    private String userid;
     private String password;
     private String username;
     private String phone;
@@ -19,7 +19,7 @@ public class AddUser {
 
     public User toEntity() {
         return User.builder()
-                .userId(userId)
+                .userid(userid)
                 .password(password)
                 .username(username)
                 .phone(phone)

@@ -6,11 +6,11 @@ import lombok.Getter;
 @Getter
 public class LoginRequest {
 
-    private final String userId;
+    private final String userid;
     private final String password;
 
     public LoginRequest(User user) {
-        this.userId = user.getUserId();
+        this.userid = user.getUserid();
         this.password = user.getPassword();
     }
 }

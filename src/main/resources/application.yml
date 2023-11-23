@@ -21,5 +21,7 @@ spring:
       ddl-auto: create
     properties: # property 사용 설정
       hibernate: # hibernate property 설정
+        show_sql: true
         format_sql: true
+        use_sql_comment: true
     defer-datasource-initialization: true

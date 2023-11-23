@@ -1,11 +1,13 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>main</title>
 </head>
 <body>
 <h1>Main</h1>
-
+<button th:href="@{/login}">로그인</button>
+<button th:href="@{/join}">회원가입</button>
+<button>게시판</button>
 </body>
 </html>

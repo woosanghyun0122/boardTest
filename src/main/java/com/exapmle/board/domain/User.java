@@ -23,7 +23,7 @@ public class User {
     private Long id;
 
     @Column(name = "userid", nullable = false)
-    private String userId;
+    private String userid;
 
     @Column(name = "password", nullable = false)
     private String password;
@@ -42,8 +42,8 @@ public class User {
 
 
     @Builder
-    public User(String userId, String password, String username, String phone, String email, String address) {
-        this.userId = userId;
+    public User(String userid, String password, String username, String phone, String email, String address) {
+        this.userid = userid;
         this.password = password;
         this.username = username;
         this.phone = phone;
@@ -60,8 +60,8 @@ public class User {
     private LocalDateTime updatedAt;
 
 
-    public void update(String userId, String password, String username, String phone, String email, String address) {
-        this.userId = userId;
+    public void update(String userid, String password, String username, String phone, String email, String address) {
+        this.userid = userid;
         this.password = password;
         this.username = username;
         this.phone = phone;

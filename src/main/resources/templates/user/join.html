@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 회원가입 </title>
+    <link rel="stylesheet" href="css/join.css">
+</head>
+<body>
+
+<div class="member">
+    <!-- 1. 로고 -->
+
+    <!-- 2. 필드 -->
+    <div class="field">
+        <b>아이디</b>
+        <span class="placehold-text"><input type="text" id="userid"></span>
+        <button type="button" id="duplicateCheck">중복 확인</button>
+    </div>
+    <div class="field">
+        <b>비밀번호</b>
+        <input class="userpw" id="password" type="password">
+    </div>
+    <div class="field">
+        <b>비밀번호 재확인</b>
+        <input class="userpw-confirm" type="password">
+    </div>
+    <div class="field">
+        <b>이름</b>
+        <input type="text" id="username">
+    </div>
+    <div class="field">
+        <b>주소</b>
+        <input type="text" id="address">
+    </div>
+
+    <!-- 5. 이메일_전화번호 -->
+    <div class="field">
+        <b>본인 확인 이메일<small>(선택)</small></b>
+        <input type="email" placeholder="선택입력" id="email">
+    </div>
+
+    <div class="field tel-number">
+        <b>휴대전화</b>
+        <select>
+            <option value="">대한민국 +82</option>
+        </select>
+        <div>
+            <input type="tel" placeholder="전화번호 입력" id="phone">
+        </div>
+    </div>
+
+    <!-- 6. 가입하기 버튼 -->
+    <input type="submit" id="joinButton" value="가입하기">
+
+</div>
+
+</body>
+<script src="/js/join.js"></script>
+</html>

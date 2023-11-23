@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Getter
 public class UpdateUser {
 
-    private String userId;
+    private String userid;
     private String password;
     private String username;
     private String phone;

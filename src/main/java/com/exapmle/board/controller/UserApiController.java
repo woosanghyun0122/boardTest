@@ -20,8 +20,15 @@ public class UserApiController {
     @GetMapping("/api/user/{userid}/{password}")
     public ResponseEntity<User> login(@PathVariable String userid, @PathVariable String password) {
 
-        User loginUser = service.findByUserIdAndPassword(userid, password);
+        User loginUser = service.findByUseridAndPassword(userid, password);
         return ResponseEntity.ok(loginUser);
+    }
+
+    @GetMapping("/api/user/{userid}")
+    public ResponseEntity<Boolean> duplicateId(@PathVariable String userid) {
+
+        Boolean duplicateId = service.existsByUserid(userid);
+        return ResponseEntity.ok(duplicateId);
     }
 
     @PostMapping("/api/user")

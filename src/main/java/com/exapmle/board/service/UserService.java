@@ -16,21 +16,26 @@ public class UserService {
 
     private final UserRepository repository;
 
-    public User findByUserIdAndPassword(String userId, String password) {
+    public User findByUseridAndPassword(String userid, String password) {
 
-        return repository.findByUserIdAndPassword(userId, password)
-                .orElseThrow(() -> new IllegalArgumentException("not found:" + userId + "not found" + password));
+        return repository.findByUseridAndPassword(userid, password)
+                .orElseThrow(() -> new IllegalArgumentException("not found:" + userid + "not found" + password));
 
 
+    }
+
+    public boolean existsByUserid(String userid) {
+
+        return repository.existsByUserid(userid);
     }
 
     public User save(AddUser user) {
         return repository.save(user.toEntity());
     }
 
-    public void deleteByUserId(String userId) {
+    public void deleteByUserId(String userid) {
 
-        repository.deleteByUserId(userId);
+        repository.deleteByUserid(userid);
     }
 
     @Transactional
@@ -39,7 +44,7 @@ public class UserService {
         User findUser =  repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("not found" + id));
 
-        findUser.update(user.getUserId(), user.getPassword(), user.getUsername(), user.getPhone(), user.getEmail(), user.getAddress());
+        findUser.update(user.getUserid(), user.getPassword(), user.getUsername(), user.getPhone(), user.getEmail(), user.getAddress());
 
         return findUser;
     }
