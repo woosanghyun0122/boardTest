@@ -9,6 +9,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -18,10 +19,18 @@ public class UserApiController {
     private final UserService service;
 
     @GetMapping("/api/user/{userid}/{password}")
-    public ResponseEntity<User> login(@PathVariable String userid, @PathVariable String password) {
+    public ResponseEntity<User> login(@PathVariable String userid, @PathVariable String password, HttpSession session) {
 
         User loginUser = service.findByUseridAndPassword(userid, password);
-        return ResponseEntity.ok(loginUser);
+
+        if (loginUser != null) {
+
+            session.setAttribute("loginUser", loginUser);
+            return ResponseEntity.ok(loginUser);
+        }
+        else{
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
     }
 
     @GetMapping("/api/user/{userid}")
