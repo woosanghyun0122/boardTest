@@ -37,7 +37,12 @@ public class UserApiController {
     public ResponseEntity<Boolean> duplicateId(@PathVariable String userid) {
 
         Boolean duplicateId = service.existsByUserid(userid);
-        return ResponseEntity.ok(duplicateId);
+
+        if (duplicateId) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(duplicateId);
+        } else {
+            return ResponseEntity.ok(duplicateId);
+        }
     }
 
     @PostMapping("/api/user")

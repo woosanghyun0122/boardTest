@@ -42,13 +42,15 @@ public class User {
 
 
     @Builder
-    public User(String userid, String password, String username, String phone, String email, String address) {
+    public User(String userid, String password, String username, String phone, String email, String address,LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.userid = userid;
         this.password = password;
         this.username = username;
         this.phone = phone;
         this.email = email;
         this.address = address;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
     }
 
     @CreatedDate

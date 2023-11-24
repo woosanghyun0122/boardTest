@@ -10,9 +10,10 @@ login.addEventListener('click',event =>{
     .then(response =>{
         if(!response.ok){
             alert("아이디와 비밀번호를 확인하세요");
+            window.location.reload();
         }
-    })
-    .then(()=>{
-        location.replace('/');
+        else{
+            location.replace("/");
+        }
     })
 })

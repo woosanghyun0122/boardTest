@@ -6,28 +6,20 @@
 </head>
 <body>
 <h1>Main</h1>
-<input type="hidden" id="loginId" th:value="${loginUser.userid}"/>
-<button th:href="@{/login}">로그인</button>
-<button th:href="@{/join}">회원가입</button>
-<button th:href="@{/board/main}" id="goBoard">게시판</button>
+<h3><span th:if="${loginUser ne null}" th:text="${loginUser.userid}"></span> </h3>
+<a th:href="@{/login}">로그인</a>
+<a th:href="@{/join}">회원가입</a>
+<button id="goBoard">게시판</button>
 </body>
 
 <script>
     var goBoard = document.getElementById('goBoard');
-    var loginId = document.getElementById('loginId');
 
     goBoard.addEventListener('click',()=>{
-        if(loginId == null){
-            alert("로그인이 필요합니다.");
-            location.replace('/login');
-        }
-        else{
             location.replace('/board/main');
         }
-    }
-
-    }
 
 
 </script>
+
 </html>

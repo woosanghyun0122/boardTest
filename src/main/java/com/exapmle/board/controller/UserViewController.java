@@ -16,10 +16,11 @@ public class UserViewController {
     private final UserService service;
 
     @GetMapping("/")
-    public String home(Model model, HttpSession session) {
+    public String home(Model model, HttpSession session)  {
 
         User loginUser = (User)session.getAttribute("loginUser");
-        if (loginUser.getUserid() != null) {
+
+        if (loginUser != null && loginUser.getUserid() != null) {
             model.addAttribute("loginUser", loginUser);
         }
 
