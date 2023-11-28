@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -13,6 +14,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name="users")
+@EntityListeners(AuditingEntityListener.class)
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class User {
@@ -34,7 +36,7 @@ public class User {
     @Column(name = "phone", nullable = false)
     private String phone;
 
-    @Column(name = "email")
+    @Column(name = "email", nullable = false)
     private String email;
 
     @Column(name = "address", nullable = false)
@@ -42,15 +44,13 @@ public class User {
 
 
     @Builder
-    public User(String userid, String password, String username, String phone, String email, String address,LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public User(String userid, String password, String username, String phone, String email, String address) {
         this.userid = userid;
         this.password = password;
         this.username = username;
         this.phone = phone;
         this.email = email;
         this.address = address;
-        this.createdAt = createdAt;
-        this.updatedAt = updatedAt;
     }
 
     @CreatedDate

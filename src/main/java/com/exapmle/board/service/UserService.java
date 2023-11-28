@@ -38,6 +38,11 @@ public class UserService {
         repository.deleteByUserid(userid);
     }
 
+    public User findById(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("not found: " + id));
+    }
+
     @Transactional
     public User update(Long id, UpdateUser user) {
 

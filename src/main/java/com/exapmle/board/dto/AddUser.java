@@ -17,8 +17,6 @@ public class AddUser {
     private String username;
     private String phone;
     private String email;
-    private LocalDateTime createdAt;
-    private LocalDateTime updatedAt;
     private String address;
 
     public User toEntity() {
@@ -29,8 +27,6 @@ public class AddUser {
                 .phone(phone)
                 .email(email)
                 .address(address)
-                .createdAt(createdAt)
-                .updatedAt(updatedAt)
                 .build();
     }
 }

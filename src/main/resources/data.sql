@@ -1,2 +1,7 @@
 INSERT INTO users(userid,password,username,phone,email,address,created_at,updated_at) VALUES ('test1','1234','김가나','01012345678','abc@naver.com','서울',now(),now())
 INSERT INTO users(userid,password,username,phone,email,address,created_at,updated_at) VALUES ('test2','1234','김다라','01012341121','def@naver.com','부산',now(),now())
+INSERT INTO board(title,content,writer,created_at,updated_at) VALUES ('안녕하세요','좋은 커뮤니티인 것 같네요','test1',now(),now())
+INSERT INTO board(title,content,writer,created_at,updated_at) VALUES ('어떻게 하는 건지 설명 해주세요','오늘 처음 가입했습니다.','test2',now(),now())
+INSERT INTO board(title,content,writer,created_at,updated_at) VALUES ('안녕하세요1','내용무','test1',now(),now())
+INSERT INTO board(title,content,writer,created_at,updated_at) VALUES ('안녕하세요2','jpa 어렵다','test1',now(),now())
+INSERT INTO board(title,content,writer,created_at,updated_at) VALUES ('안녕하세요3','쉽지 않군요','test1',now(),now())

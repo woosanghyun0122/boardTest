@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판</title>
+    <link rel="stylesheet" href="/css/main.css"/>
+
+</head>
+<body>
+
+<section class="notice">
+    <div class="page-title">
+        <div class="container">
+            <h3>게시판</h3>
+        </div>
+    </div>
+
+    <!-- board seach area -->
+    <div id="board-search">
+        <div class="container">
+            <div class="search-window">
+                <form action="">
+                    <div class="search-wrap">
+                        <label for="search" class="blind">공지사항 내용 검색</label>
+                        <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+                        <button type="submit" id="searchBtn" class="btn btn-dark">검색</button>
+                        <input type="hidden" id="userid" th:value="${userid}"/>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- board list area -->
+    <div id="board-list">
+        <div class="container">
+            <table class="board-table">
+                <thead>
+                <tr>
+                    <th scope="col" class="th-num">번호</th>
+                    <th scope="col" class="th-title">제목</th>
+                    <th scope="col" class="th-date">작성자</th>
+                    <th scope="col" class="th-date">등록일</th>
+                    <th scope="col" class="th-num"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <th:block th:if="${searchList eq null}">
+                    <tr th:each="list, listStat: ${list}">
+                        <td th:text="${listStat.count}"></td>
+                        <th>
+                            <a href="@{/board/view/{id}(id=${list.id})"><span th:text="${list.title}"></span></a>
+                            <p>테스트</p>
+                        </th>
+                        <td th:text="${list.writer}"></td>
+                        <td th:text="${#temporals.format(list.updatedAt,'yyyy-MM-dd HH:mm:ss')}"></td>
+                        <td th:if="${userid} eq ${list.writer}"><a>수정</a>&nbsp;&nbsp;<a>삭제</a></td>
+                        <td></td>
+                    </tr>
+                </th:block>
+                <th:block th:if="${searchList ne null}">
+                    <tr th:each="searchList, searchListStat: ${searchList}">
+                        <td th:text="${searchListStat.count}"></td>
+                        <th>
+                            <a href="@{/board/view/{id}(id=${searchList.id})"><span th:text="${searchList.title}"></span></a>
+                            <p>테스트</p>
+                        </th>
+                        <td th:text="${searchList.writer}"></td>
+                        <td th:text="${#temporals.format(searchList.updatedAt,'yyyy-MM-dd HH:mm:ss')}"></td>
+                        <td th:if="${userid} eq ${searchList.writer}"><a>수정</a>&nbsp;&nbsp;<a>삭제</a></td>
+                        <td></td>
+                    </tr>
+                </th:block>
+                </tbody>
+            </table>
+            <br><br>
+            <button type="button"  class="btn btn-dark" id="goHome">홈으로</button>
+            &nbsp;&nbsp;&nbsp;&nbsp;
+            <button type="button"  class="btn btn-dark" id="goWrite">글쓰기</button>
+
+        </div>
+    </div>
+
+</section>
+</body>
+<script src="/js/main.js"></script>
+</html>

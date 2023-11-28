@@ -1,0 +1,68 @@
+  body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .board-form form button {
+            display: inline-block;
+            margin-right: 10px; /* 버튼 간격 조절 */
+            position: static; /* position 속성 제거 */
+
+        }
+
+        .board-form {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 40px; /* 크기 조정 */
+            width: 900px; /* 크기 조정 */
+            height:800px;
+            box-sizing: border-box;
+        }
+
+        .board-form label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .board-form input,
+        .board-form textarea {
+            width: calc(100% - 16px); /* 오른쪽 여백 제거 */
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .board-form button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+
+        .board-form button:hover {
+            background-color: #45a049;
+        }
+
+        #goSave {
+            float: right;
+            margin-right: 10px; /* 원하는 만큼의 마진을 지정하세요 */
+        }
+
+        #goHome {
+            float: right;
+            margin-right: 10px; /* 원하는 만큼의 마진을 지정하세요 */
+        }

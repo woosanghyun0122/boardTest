@@ -6,10 +6,13 @@
 </head>
 <body>
 <h1>Main</h1>
-<h3><span th:if="${loginUser ne null}" th:text="${loginUser.userid}"></span> </h3>
-<a th:href="@{/login}">로그인</a>
-<a th:href="@{/join}">회원가입</a>
-<button id="goBoard">게시판</button>
+<h3><span th:if="${loginUser ne null}" th:text="*{loginUser.username}">님</span> </h3>
+<br/><br/><br/><br/>
+<a th:if="${loginUser eq null}" th:href="@{/login}">로그인</a>
+<a th:if="${loginUser ne null}" th:href="@{/logout}">로그아웃</a>
+<a th:if="${loginUser eq null}" th:href="@{/join}">회원가입</a>
+<a th:if="${loginUser ne null}" th:href="@{/myPage/{id}(id=*{loginUser.id})}">마이 페이지</a>
+<button type="button" id="goBoard">게시판</button>
 </body>
 
 <script>
@@ -17,7 +20,7 @@
 
     goBoard.addEventListener('click',()=>{
             location.replace('/board/main');
-        }
+        });
 
 
 </script>
