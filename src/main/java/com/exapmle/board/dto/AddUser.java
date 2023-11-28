@@ -29,8 +29,6 @@ public class AddUser {
                 .phone(phone)
                 .email(email)
                 .address(address)
-                .createdAt(createdAt)
-                .updatedAt(updatedAt)
                 .build();
     }
 }

@@ -5,15 +5,18 @@ import com.exapmle.board.dto.AddUser;
 import com.exapmle.board.dto.UpdateUser;
 import com.exapmle.board.service.UserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Optional;
 
 @RequiredArgsConstructor
 @RestController
+@Slf4j
 public class UserApiController {
 
     private final UserService service;
@@ -22,7 +25,6 @@ public class UserApiController {
     public ResponseEntity<User> login(@PathVariable String userid, @PathVariable String password, HttpSession session) {
 
         User loginUser = service.findByUseridAndPassword(userid, password);
-
         if (loginUser != null) {
 
             session.setAttribute("loginUser", loginUser);
@@ -78,7 +80,7 @@ public class UserApiController {
     }
 
     @PutMapping("/api/user/{id}")
-    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody UpdateUser user) {
+    public ResponseEntity<User> update(@PathVariable Long id, @RequestBody UpdateUser user, HttpServletRequest request) {
 
         User updateUser = service.update(id, user);
 

@@ -1,10 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>MyPage</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> 마이페이지 </title>
+    <link rel="stylesheet" href="/css/myPage.css"/>
 </head>
 <body>
 
+<div class="member">
+    <!-- 1. 로고 -->
+    <input type="hidden" id="id" th:value="${loginUser.id}"/>
+    <input type="hidden" id="password" th:value="${loginUser.password}"/>
+    <!-- 2. 필드 -->
+    <div class="field">
+        <b>아이디</b>
+        <span class="placehold-text"><input type="text" th:value="${loginUser.userid}" id="userid" readonly></span>
+    </div>
+    <div class="field">
+        <b>이름</b>
+        <input type="text" th:value="${loginUser.username}" id="username">
+    </div>
+    <div class="field">
+        <b>주소</b>
+        <input type="text" th:value="${loginUser.address}" id="address">
+    </div>
+
+    <!-- 5. 이메일_전화번호 -->
+    <div class="field">
+        <b>본인 확인 이메일<small>(선택)</small></b>
+        <input type="email" placeholder="선택입력" th:value="${loginUser.email}" id="email">
+    </div>
+
+    <div class="field tel-number">
+        <b>휴대전화</b>
+        <select>
+            <option value="">대한민국 +82</option>
+        </select>
+        <div>
+            <input type="tel" placeholder="전화번호 입력" th:value="${loginUser.phone}" id="phone">
+        </div>
+    </div>
+
+    <!-- 6. 가입하기 버튼 -->
+    <input type="submit" id="updateButton" value="수정하기">
+    <input type="submit" id="deleteButton" value="탈퇴하기">
+
+</div>
+
 </body>
+<script src="/js/myPage.js"></script>
 </html>
