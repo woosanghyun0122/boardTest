@@ -1,12 +1,20 @@
 package com.exapmle.board.controller;
 
 import com.exapmle.board.domain.Board;
+<<<<<<< HEAD
 import com.exapmle.board.dto.AddBoard;
 import com.exapmle.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+=======
+import com.exapmle.board.service.BoardService;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+>>>>>>> origin/master
 
 import java.util.List;
 
@@ -16,6 +24,7 @@ public class BoardApiController {
 
     private final BoardService service;
 
+<<<<<<< HEAD
     @PostMapping("/api/board")
     public ResponseEntity<Board> save(@RequestBody AddBoard board) {
 
@@ -25,6 +34,8 @@ public class BoardApiController {
                 .body(newBoard);
     }
 
+=======
+>>>>>>> origin/master
     @GetMapping("/api/board")
     public ResponseEntity<List<Board>> listAll() {
 
@@ -32,6 +43,7 @@ public class BoardApiController {
 
         return ResponseEntity.ok().body(boardList);
     }
+<<<<<<< HEAD
 
     @GetMapping(params = "title")
     public ResponseEntity<List<Board>> findByTitleLike(@RequestParam String title) {
@@ -40,4 +52,6 @@ public class BoardApiController {
 
         return ResponseEntity.ok().body(findBoardList);
     }
+=======
+>>>>>>> origin/master
 }

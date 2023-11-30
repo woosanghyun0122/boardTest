@@ -24,11 +24,14 @@ public class BoardService {
                 .orElseThrow(() -> new IllegalArgumentException("not found: "+id) );
     }
 
+<<<<<<< HEAD
     public List<Board> findByTitleLike(String title) {
 
         return repository.findByTitleLike(title);
     }
 
+=======
+>>>>>>> origin/master
     public List<Board> findAll() {
         return repository.findAll();
 
