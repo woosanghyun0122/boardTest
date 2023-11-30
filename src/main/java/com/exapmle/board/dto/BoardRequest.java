@@ -1,6 +1,5 @@
 package com.exapmle.board.dto;
 
-<<<<<<< HEAD
 import com.exapmle.board.domain.Board;
 import lombok.Getter;
 
@@ -19,10 +18,4 @@ public class BoardRequest {
         this.content = board.getContent();
     }
 
-=======
-import lombok.Getter;
-
-@Getter
-public class BoardRequest {
->>>>>>> origin/master
 }

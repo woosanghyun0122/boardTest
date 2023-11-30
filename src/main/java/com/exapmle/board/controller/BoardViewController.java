@@ -1,6 +1,4 @@
 package com.exapmle.board.controller;
-
-<<<<<<< HEAD
 import com.exapmle.board.domain.Board;
 import com.exapmle.board.domain.User;
 import com.exapmle.board.service.BoardService;
@@ -15,10 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-@Controller
-@RequiredArgsConstructor
-@Slf4j
-=======
+
 import com.exapmle.board.service.BoardService;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -27,13 +22,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 @RequiredArgsConstructor
->>>>>>> origin/master
+@Slf4j
 public class BoardViewController {
 
     private final BoardService service;
 
     @GetMapping("/board/main")
-<<<<<<< HEAD
     public String main(Model model, HttpSession session) {
 
         List<Board> boardList = service.findAll();
@@ -75,10 +69,8 @@ public class BoardViewController {
 
         return "board/view";
     }
-=======
     public String main() {
 
         return "board/main";
     }
->>>>>>> origin/master
 }
