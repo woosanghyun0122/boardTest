@@ -1,64 +1,42 @@
-        body {
+body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
             margin: 0;
             padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .post {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            padding: 40px; /* 크기 조정 */
-            width: 600px; /* 크기 조정 */
-            box-sizing: border-box;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
         }
 
         .post h2 {
-            margin-bottom: 20px;
+            color: #333;
         }
 
-        .post-content {
-            margin-bottom: 20px;
+        .post p {
+            color: #666;
         }
 
         .comments {
-            margin-bottom: 20px;
+            margin-top: 20px;
         }
 
         .comment {
-            border: 1px solid #ccc;
+            border-bottom: 1px solid #eee;
             padding: 10px;
             margin-bottom: 10px;
-            border-radius: 4px;
         }
 
-        .comment-form {
-            margin-bottom: 20px;
-        }
-
-        .comment-form textarea {
-            width: calc(100% - 16px);
-            padding: 8px;
-            margin-bottom: 8px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-        }
-
-        .comment-form button {
-            background-color: #4caf50;
-            color: #fff;
-            padding: 8px 15px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .comment-form button:hover {
-            background-color: #45a049;
+        .comment p {
+            color: #444;
         }

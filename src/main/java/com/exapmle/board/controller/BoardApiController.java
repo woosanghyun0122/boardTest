@@ -4,8 +4,10 @@ import com.exapmle.board.domain.Board;
 import com.exapmle.board.dto.AddBoard;
 import com.exapmle.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import com.exapmle.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -17,6 +19,7 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
+@Slf4j
 public class BoardApiController {
 
     private final BoardService service;
@@ -39,12 +42,17 @@ public class BoardApiController {
     }
 
 
-    @GetMapping(params = "title")
-    public ResponseEntity<List<Board>> findByTitleLike(@RequestParam String title) {
+    @GetMapping("/api/board/{title}")
+    public ResponseEntity<List<Board>> findByTitleLike(@PathVariable String title, Model model) {
 
-        List<Board> findBoardList = service.findByTitleLike(title);
+        List<Board> findBoardList = service.findByTitleLike("%"+title+"%");
+        if (findBoardList != null) {
+            return ResponseEntity.ok().body(findBoardList);
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(findBoardList);
+        }
 
-        return ResponseEntity.ok().body(findBoardList);
     }
 
 }

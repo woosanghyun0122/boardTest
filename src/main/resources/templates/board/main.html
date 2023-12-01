@@ -1,9 +1,6 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-=======
 <html lang="en">
->>>>>>> origin/master
 <head>
     <meta charset="UTF-8">
     <title>게시판</title>
@@ -15,11 +12,7 @@
 <section class="notice">
     <div class="page-title">
         <div class="container">
-<<<<<<< HEAD
-            <h3>게시판</h3>
-=======
-            <h3>공지사항</h3>
->>>>>>> origin/master
+            <h3><a th:href="@{/board/main}">게시판</a></h3>
         </div>
     </div>
 
@@ -31,12 +24,8 @@
                     <div class="search-wrap">
                         <label for="search" class="blind">공지사항 내용 검색</label>
                         <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
-<<<<<<< HEAD
                         <button type="submit" id="searchBtn" class="btn btn-dark">검색</button>
                         <input type="hidden" id="userid" th:value="${userid}"/>
-=======
-                        <button type="submit" class="btn btn-dark">검색</button>
->>>>>>> origin/master
                     </div>
                 </form>
             </div>
@@ -51,81 +40,46 @@
                 <tr>
                     <th scope="col" class="th-num">번호</th>
                     <th scope="col" class="th-title">제목</th>
-<<<<<<< HEAD
                     <th scope="col" class="th-date">작성자</th>
                     <th scope="col" class="th-date">등록일</th>
-                    <th scope="col" class="th-num"></th>
+                    <th scope="col" class="th-num">조회수</th>
                 </tr>
                 </thead>
                 <tbody>
-                <th:block th:if="${searchList eq null}">
+                <div th:if="${searchList eq null}">
                     <tr th:each="list, listStat: ${list}">
                         <td th:text="${listStat.count}"></td>
                         <th>
-                            <a href="@{/board/view/{id}(id=${list.id})"><span th:text="${list.title}"></span></a>
+                            <a th:href="@{/board/view(id=${list.id})}"><span th:text="${list.title}"></span></a>
                             <p>테스트</p>
                         </th>
                         <td th:text="${list.writer}"></td>
                         <td th:text="${#temporals.format(list.updatedAt,'yyyy-MM-dd HH:mm:ss')}"></td>
-                        <td th:if="${userid} eq ${list.writer}"><a>수정</a>&nbsp;&nbsp;<a>삭제</a></td>
-                        <td></td>
+                        <td th:text="${list.count}"></td>
                     </tr>
-                </th:block>
-                <th:block th:if="${searchList ne null}">
-                    <tr th:each="searchList, searchListStat: ${searchList}">
-                        <td th:text="${searchListStat.count}"></td>
+                </div>
+                <div th:if="${searchList ne null}">
+                    <tr th:each="result : ${searchList}">
+                        <td th:text="${resultStat.count}"></td>
                         <th>
-                            <a href="@{/board/view/{id}(id=${searchList.id})"><span th:text="${searchList.title}"></span></a>
+                            <a th:href="@{/board/view(id=${result.id})}"><span th:text="${result.title}"></span></a>
                             <p>테스트</p>
                         </th>
-                        <td th:text="${searchList.writer}"></td>
-                        <td th:text="${#temporals.format(searchList.updatedAt,'yyyy-MM-dd HH:mm:ss')}"></td>
-                        <td th:if="${userid} eq ${searchList.writer}"><a>수정</a>&nbsp;&nbsp;<a>삭제</a></td>
-                        <td></td>
+                        <td th:text="${result.writer}"></td>
+                        <td th:text="${#temporals.format(result.updatedAt,'yyyy-MM-dd HH:mm:ss')}"></td>
+                        <td th:text="${result.count}"></td>
                     </tr>
-                </th:block>
+                </div>
                 </tbody>
             </table>
             <br><br>
             <button type="button"  class="btn btn-dark" id="goHome">홈으로</button>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <button type="button"  class="btn btn-dark" id="goWrite">글쓰기</button>
-
-=======
-                    <th scope="col" class="th-date">등록일</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>3</td>
-                    <th>
-                        <a href="#!">[공지사항] 개인정보 처리방침 변경안내처리방침</a>
-                        <p>테스트</p>
-                    </th>
-                    <td>2017.07.13</td>
-                </tr>
-
-                <tr>
-                    <td>2</td>
-                    <th><a href="#!">공지사항 안내입니다. 이용해주셔서 감사합니다</a></th>
-                    <td>2017.06.15</td>
-                </tr>
-
-                <tr>
-                    <td>1</td>
-                    <th><a href="#!">공지사항 안내입니다. 이용해주셔서 감사합니다</a></th>
-                    <td>2017.06.15</td>
-                </tr>
-                </tbody>
-            </table>
->>>>>>> origin/master
         </div>
     </div>
 
 </section>
 </body>
-<<<<<<< HEAD
 <script src="/js/main.js"></script>
-=======
->>>>>>> origin/master
 </html>

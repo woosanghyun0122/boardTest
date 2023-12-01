@@ -2,6 +2,9 @@ package com.exapmle.board.controller;
 import com.exapmle.board.domain.Board;
 import com.exapmle.board.domain.User;
 import com.exapmle.board.service.BoardService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,8 +34,6 @@ public class BoardViewController {
     public String main(Model model, HttpSession session) {
 
         List<Board> boardList = service.findAll();
-
-
         model.addAttribute("list", boardList);
 
         User loginUser = (User) session.getAttribute("loginUser");
@@ -48,12 +49,13 @@ public class BoardViewController {
     }
 
     @GetMapping("/board/search")
-    public String search(@RequestParam String title, Model model) {
+    public String search(@RequestParam(name = "title", required = false) String title, Model model) {
 
-        List<Board> searchList = service.findByTitleLike(title);
-        log.info("------------------------={}",searchList.get(0).getTitle());
-        model.addAttribute("searchList", searchList);
+        List<Board> list = service.findByTitleLike("%"+title+"%");
 
+        if(list != null) {
+            model.addAttribute("searchList", list);
+        }
         return "board/main";
     }
 
@@ -62,6 +64,15 @@ public class BoardViewController {
 
         model.addAttribute("userid", userid);
         return "board/write";
+    }
+
+    @GetMapping("/board/view")
+    public String boardView(@RequestParam Long id,Model model) {
+
+        Board board = service.findById(id);
+        model.addAttribute("board", board);
+
+        return "board/view";
     }
 
     @GetMapping("/board/view/{id}")
