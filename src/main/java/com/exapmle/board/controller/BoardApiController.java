@@ -2,6 +2,7 @@ package com.exapmle.board.controller;
 
 import com.exapmle.board.domain.Board;
 import com.exapmle.board.dto.AddBoard;
+import com.exapmle.board.dto.UpdateBoard;
 import com.exapmle.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -45,14 +46,29 @@ public class BoardApiController {
     @GetMapping("/api/board/{title}")
     public ResponseEntity<List<Board>> findByTitleLike(@PathVariable String title, Model model) {
 
-        List<Board> findBoardList = service.findByTitleLike("%"+title+"%");
+        List<Board> findBoardList = service.findByTitleLike("%" + title + "%");
         if (findBoardList != null) {
             return ResponseEntity.ok().body(findBoardList);
-        }
-        else {
+        } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(findBoardList);
         }
 
     }
 
+    @PutMapping("/api/board/{id}")
+    public ResponseEntity<Board> update(@PathVariable Long id, @RequestBody UpdateBoard board) {
+
+        Board updateBoard = service.update(id, board);
+
+        return ResponseEntity.ok().body(updateBoard);
+
+    }
+
+    @DeleteMapping("/api/board")
+    public ResponseEntity<Board> delete(@PathVariable Long id) {
+
+        service.delete(id);
+        return ResponseEntity.ok()
+                .build();
+    }
 }

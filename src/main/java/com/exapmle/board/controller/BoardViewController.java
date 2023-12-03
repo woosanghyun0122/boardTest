@@ -1,6 +1,7 @@
 package com.exapmle.board.controller;
 import com.exapmle.board.domain.Board;
 import com.exapmle.board.domain.User;
+import com.exapmle.board.dto.UpdateBoard;
 import com.exapmle.board.service.BoardService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -66,6 +67,15 @@ public class BoardViewController {
         return "board/write";
     }
 
+    @GetMapping("/board/update")
+    public String update(@RequestParam Long id,Model model) {
+
+        Board updateBoard = service.findById(id);
+        model.addAttribute("updateBoard", updateBoard);
+
+        return "board/write";
+    }
+
     @GetMapping("/board/view")
     public String boardView(@RequestParam Long id,Model model) {
 
@@ -75,13 +85,4 @@ public class BoardViewController {
         return "board/view";
     }
 
-    @GetMapping("/board/view/{id}")
-    public String view(@PathVariable Long id) {
-
-        return "board/view";
-    }
-    public String main() {
-
-        return "board/main";
-    }
 }

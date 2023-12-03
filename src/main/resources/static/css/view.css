@@ -1,42 +1,61 @@
-body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
+.body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
 
-        .container {
-            width: 80%;
-            margin: 20px auto;
-            background-color: #fff;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
+.container {
+    width: 80%;
+    margin: 20px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-        .post {
-            border-bottom: 1px solid #ccc;
-            padding-bottom: 20px;
-            margin-bottom: 20px;
-        }
+.post {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+}
 
-        .post h2 {
-            color: #333;
-        }
+.post h2 {
+    color: #333;
+    text-align: left; /* 제목 좌측 정렬 */
+}
 
-        .post p {
-            color: #666;
-        }
+.post p {
+    color: #666;
+    text-align: left; /* 내용 좌측 정렬 */
+    margin-bottom: 10px; /* 간격 조정 */
+}
 
-        .comments {
-            margin-top: 20px;
-        }
+.info {
+    display: flex;
+    justify-content: space-between; /* 좌우 정렬 */
+    align-items: center; /* 중앙 정렬 */
+}
 
-        .comment {
-            border-bottom: 1px solid #eee;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
+.info p {
+    margin: 0; /* 부가적인 여백 제거 */
+    text-align: right; /* 수정, 삭제 버튼 우측 정렬 */
+}
 
-        .comment p {
-            color: #444;
-        }
+.info a {
+    text-align: right; /* 수정, 삭제 버튼 우측 정렬 */
+    margin-left: 10px; /* 각 링크 사이에 간격을 줍니다. */
+}
+
+.comments {
+    margin-top: 20px;
+}
+
+.comment {
+    border-bottom: 1px solid #eee;
+    padding: 10px;
+    margin-bottom: 10px;
+}
+
+.comment p {
+    color: #444;
+}

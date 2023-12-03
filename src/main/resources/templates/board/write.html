@@ -11,17 +11,23 @@
 <div class="board-form">
     <h2>게시판 글쓰기</h2>
     <form action="#" method="post">
-        <label for="title">제목:</label>
-        <input type="text" id="title" name="title" required>
+        <input type="hidden" th:if="${updateBoard ne null}" id="boardId"  th:value="${updateBoard.id}">
+        제목:
+        <input th:if="${updateBoard eq null}" type="text" id="newTitle" name="title" required>
+        <input th:if="${updateBoard ne null}" th:value="${updateBoard.title}" type="text" id="updateTitle" name="title" required>
 
         <label for="author">작성자:</label>
-        <input type="text" id="author" name="author" th:value="${userid}" readonly>
+        <input type="text" id="author" name="author" th:value="${session.loginUser.userid}" readonly>
 
-        <label for="content">내용:</label>
-        <textarea id="content" name="content" rows="20" required></textarea>
+
+        내용:
+        <textarea th:if="${updateBoard eq null}" id="newContent" name="content" rows="20" required></textarea>
+        <textarea th:if="${updateBoard ne null}" th:text="${updateBoard.content}" id="updateContent" name="content" rows="20" required></textarea>
         <br><br>
         <button type="button" id="goHome" th:href="@{/}">홈으로</button>
-        <button type="button" id="goSave">글쓰기</button>
+        <button th:if="${updateBoard eq null}" type="button" id="goSave">글쓰기</button>
+        <button th:if="${updateBoard ne null}" type="button" id="goUpdate">수정하기</button>
+
     </form>
 </div>
 </body>
