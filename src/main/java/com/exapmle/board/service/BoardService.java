@@ -54,6 +54,12 @@ public class BoardService {
 
     }
 
+    @Transactional
+    public int updateCount(Long id) {
+
+        return repository.updateCount(id);
+    }
+
 
 
 

@@ -16,8 +16,8 @@
             <p>
                 작성자: <span th:text="${board.writer}"></span>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <a th:if="${session.loginUser ne null} and ${session.loginUser.userid} eq ${board.writer}" th:onclick="goUpdate([[${board.id}]])">수정</a>
-                <a th:if="${session.loginUser ne null} and ${session.loginUser.userid} eq ${board.writer}" th:onclick="goDelete([[${board.id}]])">삭제</a>
+                <a th:if="${session.loginUser ne null} and ${session.loginUser.userid} eq ${board.writer}" id="updateBtn">수정</a>
+                <a th:if="${session.loginUser ne null} and ${session.loginUser.userid} eq ${board.writer}" id="deleteBtn">삭제</a>
             </p>
             <p>
                 조회수&nbsp; <span th:text="${board.count}"></span>
@@ -41,7 +41,7 @@
 
     </div>
 </div>
-
+<button type="button" id="goHome">목록으로</button>
 </body>
 <script src="/js/view.js"></script>
 </html>

@@ -3,6 +3,33 @@ var goHomeBtn = document.getElementById('goHome');
 var searchBtn = document.getElementById('searchBtn');
 var userid = document.getElementById('userid').value;
 
+function moveToBoardView(id) {
+
+    fetch(`/api/board/count/${id}`, {
+        method: 'PUT'
+    })
+    .then(response => {
+        if (response.ok) {
+            location.href = `/board/view?id=${id}`;
+        }
+        else if(response.accepted){
+            location.href = `/board/view?id=${id}`;
+        }
+    })
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    var titles = document.getElementsByClassName('title');
+
+    for (var i = 0; i < titles.length; i++) {
+        titles[i].addEventListener('click', function() {
+            var id = this.parentElement.querySelector('.num').value;
+            moveToBoardView(id);
+        });
+    }
+});
+
+
 // JavaScript
 if (searchBtn) {
     searchBtn.addEventListener('click', () => {

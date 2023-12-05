@@ -1,11 +1,13 @@
 package com.exapmle.board.controller;
 
 import com.exapmle.board.domain.Board;
+import com.exapmle.board.domain.User;
 import com.exapmle.board.dto.AddBoard;
 import com.exapmle.board.dto.UpdateBoard;
 import com.exapmle.board.service.BoardService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
@@ -16,6 +18,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -64,7 +67,23 @@ public class BoardApiController {
 
     }
 
-    @DeleteMapping("/api/board")
+    @PutMapping("/api/board/count/{id}")
+    public ResponseEntity<Integer> updateCount(@PathVariable Long id, HttpSession session) {
+
+        User user = (User) session.getAttribute("loginUser");
+        Board board = service.findById(id);
+        if(user ==null || !user.getId().equals(board.getId())){
+
+            int result = service.updateCount(id);
+            return ResponseEntity.ok().build();
+        }
+        else{
+            return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+        }
+
+    }
+
+    @DeleteMapping("/api/board/{id}")
     public ResponseEntity<Board> delete(@PathVariable Long id) {
 
         service.delete(id);

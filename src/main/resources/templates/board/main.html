@@ -50,7 +50,8 @@
                     <tr th:each="list, listStat: ${list}">
                         <td th:text="${listStat.count}"></td>
                         <th>
-                            <a th:href="@{/board/view(id=${list.id})}"><span th:text="${list.title}"></span></a>
+                            <a class="title"><span th:text="${list.title}"></span></a>
+                            <input type="hidden" class="num" th:value="${list.id}">
                             <p>테스트</p>
                         </th>
                         <td th:text="${list.writer}"></td>
@@ -62,7 +63,8 @@
                     <tr th:each="result : ${searchList}">
                         <td th:text="${resultStat.count}"></td>
                         <th>
-                            <a th:href="@{/board/view(id=${result.id})}"><span th:text="${result.title}"></span></a>
+                            <a class="title"><span th:text="${result.title}"></span></a>
+                            <input type="hidden" class="num" th:value="${result.id}">
                             <p>테스트</p>
                         </th>
                         <td th:text="${result.writer}"></td>
